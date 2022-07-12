@@ -5,6 +5,7 @@ import { RouterModule } from "@angular/router";
 import { HomeComponet } from "./home/home.component";
 import { MenuComponet } from "./menu/menu.component";
 import { NotFoundComponet } from './not-found/not-found.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NotFoundComponet } from './not-found/not-found.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    NgbModule
   ],
   exports: [
     HomeComponet,
