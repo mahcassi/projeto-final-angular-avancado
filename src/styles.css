@@ -4,6 +4,11 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+.main-container {
+  padding: 25px 15px 100px 15px;
+  margin: 0 auto 0 auto;
+  overflow: hidden;
+}
 
 /* Sticky footer styles
 -------------------------------------------------- */
