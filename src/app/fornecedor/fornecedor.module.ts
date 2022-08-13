@@ -10,6 +10,8 @@ import { ExcluirComponent } from './excluir/excluir.component';
 import { NovoComponent } from './novo/novo.component';
 import { ListaComponent } from './lista/lista.component';
 import { FornecedorService } from './services/fornecedor.service';
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 
@@ -28,6 +30,8 @@ import { FornecedorService } from './services/fornecedor.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgBrazil,
+    TextMaskModule,
   ],
   providers: [
     FornecedorService
