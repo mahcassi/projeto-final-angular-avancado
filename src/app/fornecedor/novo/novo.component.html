@@ -7,7 +7,7 @@
     <div class="col-md-10">
       <form novalidate="novalidate" (ngSubmit)="adicionarFornecedor()" [formGroup]="fornecedorForm">
 
-        <div class="alert alert-danger" *ngIf="errors.length > 0">
+        <div class="alert alert-danger" *ngIf="errors?.length > 0">
           <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
           <ul>
             <li *ngFor="let error of errors">{{ error }}</li>
@@ -58,7 +58,7 @@
           <div class="form-group">
             <label class="control-label">CEP</label>
             <div>
-              <input class="form-control" id="cep" type="text" placeholder="CEP (requerido)" formControlName="cep" cep [textMask]="{mask: MASKS.cep.textMask}"
+              <input class="form-control" id="cep" type="text" placeholder="CEP (requerido)" (blur)="buscarCep($event.target.value)" formControlName="cep" cep [textMask]="{mask: MASKS.cep.textMask}"
                 [ngClass]="{ 'is-invalid': displayMessage.cep }" />
               <span class="text-danger" *ngIf="displayMessage.cep">
                 <p [innerHTML]="displayMessage.cep"></p>
