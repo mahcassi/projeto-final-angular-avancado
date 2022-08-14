@@ -16,8 +16,7 @@ export class DetalhesComponent implements OnInit {
   private route: ActivatedRoute,
   private fornecedorService: FornecedorService)
   {
-    this.fornecedorService.obterPorId(route.params['id'])
-    .subscribe(fornecedor => this.fornecedor = fornecedor);
+    this.fornecedor = this.route.snapshot.data['fornecedor'];
   }
 
 
