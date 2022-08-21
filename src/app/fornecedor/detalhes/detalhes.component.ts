@@ -20,7 +20,6 @@ export class DetalhesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.EnderecoCompleto())
   }
 
   public EnderecoCompleto(): string {

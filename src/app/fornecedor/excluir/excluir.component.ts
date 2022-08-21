@@ -22,15 +22,20 @@ export class ExcluirComponent {
     this.fornecedor = this.route.snapshot.data['fornecedor'];
   }
 
+  public EnderecoCompleto(): string {
+    return this.fornecedor.endereco.logradouro + ", " + this.fornecedor.endereco.numero + " - " + this.fornecedor.endereco.bairro +
+      ", " + this.fornecedor.endereco.cidade + " - " + this.fornecedor.endereco.estado;
+  }
+
   excluirEvento() {
     this.fornecedorService.excluirFornecedor(this.fornecedor.id)
       .subscribe(
-        evento => { this.sucessoExclusao(evento) },
+        fornecedor => { this.sucessoExclusao(fornecedor) },
         error => { this.falha() }
       );
   }
 
-  sucessoExclusao(evento: any) {
+  sucessoExclusao(fornecedor: any) {
 
     const toast = this.toastr.success('Fornecedor excluido com Sucesso!', 'Good bye :D');
     if (toast) {
