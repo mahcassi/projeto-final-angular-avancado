@@ -19,6 +19,11 @@ const routes: Routes = [
       .then(m => m.FornecedorModule)
   },
   {
+    path: 'produtos',
+    loadChildren: () => import('./produto/produto.module')
+      .then(m => m.ProdutoModule)
+  },
+  {
     path: 'acesso-negado',
     component: AcessoNegadoComponent
   },
