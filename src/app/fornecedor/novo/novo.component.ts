@@ -204,7 +204,6 @@ export class NovoComponent implements OnInit {
   }
 
   processarFalha(fail: any) {
-    console.log(fail.error.errors);
     this.errors = fail.error.errors;
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
   }

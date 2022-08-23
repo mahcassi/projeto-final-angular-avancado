@@ -15,6 +15,7 @@ import { NovoComponent } from './novo/novo.component';
 import { ListaComponent } from './lista/lista.component';
 import { FornecedorService } from './services/fornecedor.service';
 import { FornecedorResolve } from './services/fornecedor.resolve';
+import { FornecedorGuard } from './services/fornecedor.guard';
 
 
 
@@ -39,7 +40,8 @@ import { FornecedorResolve } from './services/fornecedor.resolve';
   ],
   providers: [
     FornecedorService,
-    FornecedorResolve
+    FornecedorResolve,
+    FornecedorGuard
   ]
 })
 export class FornecedorModule { }
