@@ -221,6 +221,7 @@ export class EditarComponent implements OnInit {
 
       this.fornecedor = Object.assign({}, this.fornecedor, this.fornecedorForm.value);
       this.fornecedor.documento = StringUtils.somenteNumeros(this.fornecedor.documento);
+      this.fornecedor.tipoFornecedor = +this.fornecedor.tipoFornecedor;
 
       this.fornecedorService.atualizarFornecedor(this.fornecedor)
         .subscribe(

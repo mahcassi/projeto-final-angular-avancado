@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AcessoNegadoComponent } from './navegacao/acesso-negado/acesso-negado.component';
 
 import { HomeComponet } from './navegacao/home/home.component';
 import { NotFoundComponet } from './navegacao/not-found/not-found.component';
@@ -17,7 +18,10 @@ const routes: Routes = [
     loadChildren: () => import('./fornecedor/fornecedor.module')
       .then(m => m.FornecedorModule)
   },
-
+  {
+    path: 'acesso-negado',
+    component: AcessoNegadoComponent
+  },
   { path: 'nao-encontrado', component: NotFoundComponet },
   { path: '**', component: NotFoundComponet }
 ];
