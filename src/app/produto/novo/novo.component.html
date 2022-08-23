@@ -52,7 +52,7 @@
           <label class="control-label">Imagem do Produto</label>
 
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="imagem" formControlName="imagem"
+            <input type="file" accept="image/jpeg, image/png" class="custom-file-input" id="imagem" formControlName="imagem"
               [ngClass]="{'is-invalid': displayMessage.imagem }" (change)="fileChangeEvent($event)">
             <label data-browse="Procurar" style="width: 400px" class="custom-file-label"></label>
             <span *ngIf="imagemNome"><br>{{ imagemNome }}<br></span>
