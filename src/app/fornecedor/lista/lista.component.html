@@ -20,7 +20,7 @@
               {{ fornecedor.nome }}
           </td>
           <td>
-              {{fornecedor.documento }}
+            {{ fornecedor.tipoFornecedor === 1 ? (fornecedor.documento | cpf) : (fornecedor.documento | cnpj) }}
           </td>
           <td>
               <input [checked]="fornecedor.ativo" class="check-box" disabled="disabled" type="checkbox">
