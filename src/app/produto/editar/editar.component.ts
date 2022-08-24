@@ -11,12 +11,15 @@ import { ValidationMessages, GenericValidator, DisplayMessage } from 'src/app/ut
 
 import { Produto, Fornecedor } from '../models/produto';
 import { ProdutoService } from '../services/produto.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html'
 })
 export class EditarComponent implements OnInit {
+
+  imagens: string = environment.imagensUrl;
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
@@ -104,7 +107,7 @@ export class EditarComponent implements OnInit {
   editarProduto() {
     if (this.produtoForm.dirty && this.produtoForm.valid) {
       this.produto = Object.assign({}, this.produto, this.produtoForm.value);
-     
+
      this.produtoService.atualizarProduto(this.produto)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
@@ -130,6 +133,6 @@ export class EditarComponent implements OnInit {
   processarFalha(fail: any) {
     this.errors = fail.error.errors;
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
-  } 
+  }
 }
 
