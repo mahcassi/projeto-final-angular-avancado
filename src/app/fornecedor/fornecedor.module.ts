@@ -16,6 +16,7 @@ import { ListaComponent } from './lista/lista.component';
 import { FornecedorService } from './services/fornecedor.service';
 import { FornecedorResolve } from './services/fornecedor.resolve';
 import { FornecedorGuard } from './services/fornecedor.guard';
+import { ListaProdutosComponent } from './produtos/lista-produtos.component';
 
 
 
@@ -27,7 +28,8 @@ import { FornecedorGuard } from './services/fornecedor.guard';
     EditarComponent,
     ExcluirComponent,
     NovoComponent,
-    ListaComponent
+    ListaComponent,
+    ListaProdutosComponent
   ],
   imports: [
     CommonModule,
