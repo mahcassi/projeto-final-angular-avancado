@@ -12,7 +12,7 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { fromEvent, merge, Observable } from "rxjs";
 
@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
   public usuario: Usuario;
   public errors: any[] = [];
 
+  public returnUrl: string;
+
   public validationMessages: ValidationMessages;
   public genericValidator: GenericValidator;
   public displayMessage: DisplayMessage = {};
@@ -49,7 +51,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private contaService: ContaService,
     private router: Router,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private route: ActivatedRoute
   ) {
     this.validationMessages = {
       email: {
@@ -61,6 +64,8 @@ export class LoginComponent implements OnInit {
         rangeLength: "A senha deve possuir entre 6 e 15 cacrteres",
       }
     };
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
 
     this.genericValidator = new GenericValidator(this.validationMessages);
   }
@@ -109,10 +114,12 @@ export class LoginComponent implements OnInit {
     this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
 
     let toast = this.toast.success("Login realizado com sucesso!", "Bem vindo!!!");
-    if(toast) {
-      toast.onHidden.subscribe(() => {{
-        this.router.navigate(["/home"]);
-      }});
+    if (toast) {
+      toast.onHidden.subscribe(() => {
+        {
+          this.returnUrl ? this.router.navigate([this.returnUrl]) : this.router.navigate(["/home"]);
+        }
+      });
     }
   }
 

@@ -6,52 +6,52 @@ import { NovoComponent } from '../novo/novo.component';
 
 @Injectable()
 export class ProdutoGuard implements CanActivate, CanDeactivate<NovoComponent> {
-    
-    localStorageUtils = new LocalStorageUtils();
 
-    constructor(private router: Router){}
+  localStorageUtils = new LocalStorageUtils();
 
-    canDeactivate(component: NovoComponent) {
-        if(component.mudancasNaoSalvas) {
-            return window.confirm('Tem certeza que deseja abandonar o preenchimento do formulario?');
-        }        
-        return true
+  constructor(private router: Router) { }
+
+  canDeactivate(component: NovoComponent) {
+    if (component.mudancasNaoSalvas) {
+      return window.confirm('Tem certeza que deseja abandonar o preenchimento do formulario?');
+    }
+    return true
+  }
+
+  canActivate(routeAc: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (!this.localStorageUtils.obterTokenUsuario()) {
+      this.router.navigate(['/conta/login/'], { queryParams: { returnUrl: this.router.url } });
     }
 
-    canActivate(routeAc: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if(!this.localStorageUtils.obterTokenUsuario()){
-            this.router.navigate(['/conta/login/'], { queryParams: { returnUrl: this.router.url }});
-        }  
+    let user = this.localStorageUtils.obterUsuario();
 
-        let user = this.localStorageUtils.obterUsuario();
+    let claim: any = routeAc.data[0];
+    if (claim !== undefined) {
+      let claim = routeAc.data[0]['claim'];
 
-        let claim: any = routeAc.data[0];
-        if (claim !== undefined) {
-            let claim = routeAc.data[0]['claim'];
-
-            if (claim) {
-                if (!user.claims) {
-                    this.navegarAcessoNegado();
-                }
-                
-                let userClaims = user.claims.find(x => x.type === claim.nome);
-                
-                if(!userClaims){
-                    this.navegarAcessoNegado();
-                }
-                
-                let valoresClaim = userClaims.value as string;
-
-                if (!valoresClaim.includes(claim.valor)) {
-                    this.navegarAcessoNegado();
-                }
-            }
+      if (claim) {
+        if (!user.claims) {
+          this.navegarAcessoNegado();
         }
 
-        return true;  
+        let userClaims = user.claims.find(x => x.type === claim.nome);
+
+        if (!userClaims) {
+          this.navegarAcessoNegado();
+        }
+
+        let valoresClaim = userClaims.value as string;
+
+        if (!valoresClaim.includes(claim.valor)) {
+          this.navegarAcessoNegado();
+        }
+      }
     }
 
-    navegarAcessoNegado() {
-        this.router.navigate(['/acesso-negado']);
-    }
+    return true;
+  }
+
+  navegarAcessoNegado() {
+    this.router.navigate(['/acesso-negado']);
+  }
 }
